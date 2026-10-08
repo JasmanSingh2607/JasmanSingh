@@ -1,0 +1,1621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>NASA — Exploring the Unknown</title>
+
+  <meta
+    name="description"
+    content="A NASA-inspired static landing page featuring verified information about NASA, Artemis, space exploration, aeronautics, and scientific discovery."
+  />
+
+  <style>
+    /* =========================================================
+       NASA-INSPIRED STATIC LANDING PAGE
+       No external libraries required.
+       ========================================================= */
+
+    :root {
+      --navy: #050b17;
+      --navy-2: #091426;
+      --blue: #1677ff;
+      --blue-light: #5fa8ff;
+      --red: #e21f2f;
+      --white: #ffffff;
+      --muted: #a9b6c9;
+      --line: rgba(255, 255, 255, 0.12);
+      --panel: rgba(10, 22, 42, 0.82);
+      --max-width: 1240px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--navy);
+      color: var(--white);
+      font-family:
+        Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    /* =========================================================
+       GLOBAL
+       ========================================================= */
+
+    .container {
+      width: min(calc(100% - 40px), var(--max-width));
+      margin-inline: auto;
+    }
+
+    .eyebrow {
+      color: var(--blue-light);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .section-heading {
+      max-width: 780px;
+      margin-bottom: 55px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(2.3rem, 5vw, 4.6rem);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+      text-transform: uppercase;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      max-width: 650px;
+      margin-top: 22px;
+      font-size: 1.05rem;
+    }
+
+    .section {
+      padding: 120px 0;
+      position: relative;
+    }
+
+    .section-dark {
+      background: #030811;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 0 22px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: var(--white);
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: 0.25s ease;
+    }
+
+    .button:hover {
+      background: var(--white);
+      color: var(--navy);
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      background: var(--red);
+      border-color: var(--red);
+    }
+
+    .button-primary:hover {
+      background: #ff3343;
+      border-color: #ff3343;
+      color: #fff;
+    }
+
+    /* =========================================================
+       HEADER
+       ========================================================= */
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      border-bottom: 1px solid transparent;
+      transition: 0.3s ease;
+    }
+
+    header.scrolled {
+      background: rgba(3, 8, 17, 0.9);
+      backdrop-filter: blur(16px);
+      border-color: var(--line);
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+    }
+
+    .insignia {
+      width: 42px;
+      height: 42px;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 30% 30%, #fff 0 1px, transparent 2px),
+        radial-gradient(circle at 70% 65%, #fff 0 1px, transparent 2px),
+        #061d43;
+      flex: 0 0 auto;
+    }
+
+    .insignia::before {
+      content: "";
+      position: absolute;
+      width: 58px;
+      height: 2px;
+      background: var(--red);
+      top: 19px;
+      left: -8px;
+      transform: rotate(-28deg);
+    }
+
+    .insignia::after {
+      content: "";
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      border: 1px solid var(--blue-light);
+      border-radius: 50%;
+      top: 8px;
+      left: 8px;
+      opacity: 0.8;
+    }
+
+    .brand span {
+      font-size: 0.85rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #dbe6f5;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      height: 2px;
+      width: 0;
+      background: var(--red);
+      bottom: -8px;
+      left: 0;
+      transition: width 0.25s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .menu-toggle {
+      display: none;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: white;
+      width: 44px;
+      height: 44px;
+      cursor: pointer;
+    }
+
+    /* =========================================================
+       HERO
+       ========================================================= */
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 76% 35%, rgba(22, 119, 255, 0.25), transparent 25%),
+        radial-gradient(circle at 25% 70%, rgba(226, 31, 47, 0.09), transparent 28%),
+        linear-gradient(135deg, #030812 0%, #07162c 55%, #02050b 100%);
+    }
+
+    .stars,
+    .stars::before,
+    .stars::after {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .stars {
+      opacity: 0.6;
+      background-image:
+        radial-gradient(circle, rgba(255,255,255,.9) 0 1px, transparent 1.5px),
+        radial-gradient(circle, rgba(255,255,255,.65) 0 1px, transparent 1.5px);
+      background-size: 91px 103px, 137px 151px;
+      background-position: 20px 30px, 70px 80px;
+    }
+
+    .stars::before {
+      content: "";
+      background:
+        linear-gradient(
+          105deg,
+          transparent 0 54%,
+          rgba(255,255,255,.07) 54.1%,
+          transparent 54.4%
+        );
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 720px;
+      height: 720px;
+      border: 1px solid rgba(95, 168, 255, 0.14);
+      border-radius: 50%;
+      right: -330px;
+      top: 20%;
+      box-shadow:
+        0 0 0 50px rgba(95, 168, 255, 0.025),
+        0 0 0 100px rgba(95, 168, 255, 0.018);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding-top: 100px;
+    }
+
+    .hero-kicker {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--blue-light);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 25px;
+    }
+
+    .hero-kicker::before {
+      content: "";
+      width: 38px;
+      height: 2px;
+      background: var(--red);
+    }
+
+    .hero h1 {
+      max-width: 900px;
+      font-size: clamp(4rem, 10vw, 9.5rem);
+      line-height: 0.84;
+      letter-spacing: -0.075em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 span {
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(255,255,255,.55);
+    }
+
+    .hero-copy {
+      max-width: 600px;
+      margin-top: 35px;
+      color: #b7c4d6;
+      font-size: clamp(1rem, 2vw, 1.25rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 35px;
+      flex-wrap: wrap;
+    }
+
+    .hero-meta {
+      margin-top: 70px;
+      display: flex;
+      gap: 45px;
+      flex-wrap: wrap;
+      color: #7e91aa;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .hero-meta strong {
+      display: block;
+      color: white;
+      margin-bottom: 4px;
+    }
+
+    /* =========================================================
+       MISSION STRIP
+       ========================================================= */
+
+    .mission-strip {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: #07101f;
+    }
+
+    .mission-strip-inner {
+      min-height: 90px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .mission-item {
+      padding: 24px 30px;
+      border-right: 1px solid var(--line);
+    }
+
+    .mission-item:last-child {
+      border-right: 0;
+    }
+
+    .mission-item small {
+      color: var(--blue-light);
+      display: block;
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .mission-item p {
+      color: #dce5f2;
+      font-size: 0.9rem;
+    }
+
+    /* =========================================================
+       ABOUT
+       ========================================================= */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .about-statement {
+      font-size: clamp(1.8rem, 3.5vw, 3.4rem);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      font-weight: 700;
+    }
+
+    .about-statement em {
+      color: var(--blue-light);
+      font-style: normal;
+    }
+
+    .about-copy {
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .about-copy p + p {
+      margin-top: 20px;
+    }
+
+    .timeline {
+      margin-top: 75px;
+      border-top: 1px solid var(--line);
+    }
+
+    .timeline-row {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 30px;
+      padding: 26px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .timeline-year {
+      color: var(--blue-light);
+      font-weight: 900;
+      letter-spacing: 0.08em;
+    }
+
+    .timeline-row h3 {
+      font-size: 1.05rem;
+      margin-bottom: 5px;
+    }
+
+    .timeline-row p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* =========================================================
+       ARTEMIS
+       ========================================================= */
+
+    .artemis {
+      background:
+        linear-gradient(180deg, #030811, #071326);
+      overflow: hidden;
+    }
+
+    .artemis-layout {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .moon-visual {
+      min-height: 580px;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 50%, #fff 0 1px, transparent 1.5px),
+        radial-gradient(circle at 35% 30%, rgba(255,255,255,.7) 0 1px, transparent 1.5px),
+        radial-gradient(circle at 80% 20%, rgba(255,255,255,.8) 0 1px, transparent 1.5px),
+        linear-gradient(145deg, #0a1830, #02060d);
+      background-size: 120px 120px, 180px 180px, 210px 210px, auto;
+      border: 1px solid var(--line);
+    }
+
+    .moon {
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background:
+        radial-gradient(circle at 28% 30%, rgba(255,255,255,.18) 0 7px, transparent 8px),
+        radial-gradient(circle at 65% 24%, rgba(0,0,0,.16) 0 18px, transparent 19px),
+        radial-gradient(circle at 42% 68%, rgba(0,0,0,.14) 0 28px, transparent 29px),
+        radial-gradient(circle at 50% 45%, #d9dce0 0%, #858990 70%, #4d515a 100%);
+      box-shadow:
+        -30px -20px 70px rgba(255,255,255,.12),
+        40px 35px 80px rgba(0,0,0,.65);
+    }
+
+    .orbit {
+      position: absolute;
+      width: 520px;
+      height: 170px;
+      border: 1px solid rgba(95, 168, 255, .4);
+      border-radius: 50%;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) rotate(-15deg);
+    }
+
+    .orbit::after {
+      content: "";
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: var(--red);
+      border-radius: 50%;
+      top: 14px;
+      left: 85px;
+      box-shadow: 0 0 20px rgba(226,31,47,.8);
+    }
+
+    .artemis-copy h2 {
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      line-height: 0.9;
+      letter-spacing: -0.06em;
+      text-transform: uppercase;
+    }
+
+    .artemis-copy > p {
+      color: var(--muted);
+      margin: 25px 0 30px;
+      max-width: 560px;
+    }
+
+    .fact-list {
+      border-top: 1px solid var(--line);
+      margin-top: 35px;
+    }
+
+    .fact {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 20px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .fact strong {
+      color: var(--blue-light);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .fact span {
+      color: #d9e2ee;
+      font-size: 0.9rem;
+    }
+
+    /* =========================================================
+       AREAS OF WORK
+       ========================================================= */
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+
+    .work-card {
+      min-height: 330px;
+      padding: 30px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      position: relative;
+      overflow: hidden;
+      transition: 0.3s ease;
+    }
+
+    .work-card:hover {
+      background: #09172a;
+    }
+
+    .work-number {
+      color: #3b4d65;
+      font-size: 0.75rem;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+    }
+
+    .work-icon {
+      margin: 70px 0 25px;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--blue-light);
+      display: grid;
+      place-items: center;
+      color: var(--blue-light);
+      font-weight: 900;
+    }
+
+    .work-card h3 {
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+    }
+
+    .work-card p {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-top: 10px;
+    }
+
+    /* =========================================================
+       JAMES WEBB / SCIENCE
+       ========================================================= */
+
+    .science {
+      background:
+        radial-gradient(circle at 80% 20%, rgba(22,119,255,.16), transparent 25%),
+        #050c18;
+    }
+
+    .science-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--line);
+    }
+
+    .science-panel {
+      background: #071224;
+      min-height: 430px;
+      padding: 45px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .science-panel::before {
+      content: "";
+      position: absolute;
+      width: 230px;
+      height: 230px;
+      border-radius: 50%;
+      right: -80px;
+      bottom: -100px;
+      background: radial-gradient(circle, rgba(95,168,255,.22), transparent 68%);
+    }
+
+    .science-panel h3 {
+      max-width: 450px;
+      font-size: clamp(2rem, 4vw, 3.6rem);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+      text-transform: uppercase;
+    }
+
+    .science-panel p {
+      color: var(--muted);
+      max-width: 550px;
+      margin-top: 20px;
+    }
+
+    .technical-label {
+      position: absolute;
+      bottom: 30px;
+      left: 45px;
+      color: #526781;
+      font-size: 0.65rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    /* =========================================================
+       FOOTER CTA
+       ========================================================= */
+
+    .cta {
+      padding: 110px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      text-align: center;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(22,119,255,.18), transparent 35%),
+        #02060d;
+    }
+
+    .cta h2 {
+      max-width: 950px;
+      margin: auto;
+      font-size: clamp(3rem, 8vw, 8rem);
+      line-height: .86;
+      letter-spacing: -.07em;
+      text-transform: uppercase;
+    }
+
+    .cta p {
+      max-width: 650px;
+      color: var(--muted);
+      margin: 30px auto;
+    }
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+
+    footer {
+      background: #02050a;
+      padding: 55px 0 30px;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 50px;
+      padding-bottom: 50px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .footer-brand {
+      max-width: 400px;
+    }
+
+    .footer-brand h3 {
+      font-size: 2rem;
+      letter-spacing: -.04em;
+      text-transform: uppercase;
+    }
+
+    .footer-brand p {
+      color: var(--muted);
+      margin-top: 12px;
+      font-size: .85rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 70px;
+    }
+
+    .footer-column h4 {
+      color: var(--blue-light);
+      font-size: .68rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+    }
+
+    .footer-column a {
+      display: block;
+      color: #d1dbea;
+      font-size: .82rem;
+      margin-bottom: 8px;
+    }
+
+    .footer-column a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding-top: 25px;
+      color: #617188;
+      font-size: .7rem;
+    }
+
+    /* =========================================================
+       JASMAN SINGH WATERMARK
+       ========================================================= */
+
+    .footer-watermark {
+      text-align: center;
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      color: rgba(255, 255, 255, 0.18);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    /* =========================================================
+       REVEAL ANIMATION
+       ========================================================= */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
+
+    @media (max-width: 1000px) {
+      .nav-links {
+        gap: 17px;
+      }
+
+      .about-grid,
+      .artemis-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .work-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .science-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .moon-visual {
+        min-height: 480px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .container {
+        width: min(calc(100% - 28px), var(--max-width));
+      }
+
+      .section {
+        padding: 80px 0;
+      }
+
+      .menu-toggle {
+        display: grid;
+        place-items: center;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 76px;
+        left: 14px;
+        right: 14px;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 8px;
+        background: rgba(3, 8, 17, .98);
+        border: 1px solid var(--line);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 15px;
+      }
+
+      .mission-strip-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .mission-item {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .mission-item:last-child {
+        border-bottom: 0;
+      }
+
+      .hero h1 {
+        font-size: clamp(3.8rem, 19vw, 7rem);
+      }
+
+      .hero-meta {
+        gap: 25px;
+      }
+
+      .timeline-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .work-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .moon {
+        width: 250px;
+        height: 250px;
+      }
+
+      .orbit {
+        width: 370px;
+      }
+
+      .science-panel {
+        min-height: 350px;
+        padding: 30px;
+      }
+
+      .technical-label {
+        left: 30px;
+      }
+
+      .footer-top,
+      .footer-bottom {
+        flex-direction: column;
+      }
+
+      .footer-links {
+        flex-wrap: wrap;
+        gap: 35px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =======================================================
+       HEADER
+       ======================================================= -->
+
+  <header id="header">
+    <div class="container nav">
+
+      <a href="#top" class="brand" aria-label="NASA landing page home">
+        <span class="insignia" aria-hidden="true"></span>
+        <span>National Aeronautics<br />&amp; Space Administration</span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Open navigation"
+        aria-expanded="false"
+      >
+        ☰
+      </button>
+
+      <nav aria-label="Primary navigation">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#about">About</a></li>
+          <li><a href="#artemis">Artemis</a></li>
+          <li><a href="#work">Research</a></li>
+          <li><a href="#science">Science</a></li>
+          <li>
+            <a
+              href="https://www.nasa.gov/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              NASA.gov ↗
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+
+  <main id="top">
+
+    <!-- =====================================================
+         HERO
+         ===================================================== -->
+
+    <section class="hero">
+      <div class="stars" aria-hidden="true"></div>
+
+      <div class="container hero-content reveal">
+
+        <div class="hero-kicker">
+          Exploring air and space
+        </div>
+
+        <h1>
+          Beyond<br />
+          <span>the known</span>
+        </h1>
+
+        <p class="hero-copy">
+          NASA explores the unknown in air and space, innovates for the
+          benefit of humanity, and inspires the world through discovery.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button button-primary" href="#artemis">
+            Explore Artemis
+          </a>
+
+          <a
+            class="button"
+            href="https://www.nasa.gov/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Visit NASA.gov ↗
+          </a>
+        </div>
+
+        <div class="hero-meta">
+          <div>
+            <strong>Established</strong>
+            October 1, 1958
+          </div>
+
+          <div>
+            <strong>Mission</strong>
+            Air &amp; Space Exploration
+          </div>
+
+          <div>
+            <strong>Purpose</strong>
+            Civilian Space Agency
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         MISSION STRIP
+         ===================================================== -->
+
+    <section class="mission-strip" aria-label="NASA information">
+      <div class="container mission-strip-inner">
+
+        <div class="mission-item">
+          <small>Origin</small>
+          <p>Created by the National Aeronautics and Space Act of 1958.</p>
+        </div>
+
+        <div class="mission-item">
+          <small>Operations</small>
+          <p>NASA officially began operations on October 1, 1958.</p>
+        </div>
+
+        <div class="mission-item">
+          <small>Foundation</small>
+          <p>NASA was built around the earlier NACA aeronautics organization.</p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         ABOUT NASA
+         ===================================================== -->
+
+    <section class="section" id="about">
+      <div class="container">
+
+        <div class="section-heading reveal">
+          <div class="eyebrow">01 / The Agency</div>
+          <h2>A civilian agency built for discovery.</h2>
+          <p>
+            NASA was established in 1958 to lead the United States'
+            civilian aeronautics and space activities.
+          </p>
+        </div>
+
+        <div class="about-grid">
+
+          <div class="about-statement reveal">
+            From Earth-bound research to
+            <em>deep-space exploration</em>,
+            NASA turns difficult questions into scientific missions.
+          </div>
+
+          <div class="about-copy reveal">
+            <p>
+              President Dwight D. Eisenhower signed the National Aeronautics
+              and Space Act on July 29, 1958. NASA officially opened for
+              business on October 1, 1958.
+            </p>
+
+            <p>
+              The new organization incorporated the National Advisory
+              Committee for Aeronautics (NACA), along with space-related
+              programs and facilities transferred from other U.S. government
+              organizations.
+            </p>
+
+            <p>
+              The founding legislation directed NASA toward research in
+              aeronautics and space and emphasized peaceful purposes,
+              international cooperation, scientific discovery, and the
+              advancement of aeronautical and space technology.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="timeline reveal">
+
+          <div class="timeline-row">
+            <div class="timeline-year">1915</div>
+            <div>
+              <h3>NACA is established</h3>
+              <p>
+                The National Advisory Committee for Aeronautics begins
+                advancing aeronautics research in the United States.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-row">
+            <div class="timeline-year">1958</div>
+            <div>
+              <h3>NASA becomes operational</h3>
+              <p>
+                NASA officially begins operations on October 1, following
+                the signing of the National Aeronautics and Space Act.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-row">
+            <div class="timeline-year">TODAY</div>
+            <div>
+              <h3>Air, Earth and deep space</h3>
+              <p>
+                NASA continues work across aeronautics, Earth science,
+                astrophysics, planetary science, heliophysics, human
+                spaceflight, and space technology.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         ARTEMIS
+         ===================================================== -->
+
+    <section class="section artemis" id="artemis">
+      <div class="container">
+
+        <div class="artemis-layout">
+
+          <div class="moon-visual reveal" aria-hidden="true">
+            <div class="moon"></div>
+            <div class="orbit"></div>
+          </div>
+
+          <div class="artemis-copy reveal">
+
+            <div class="eyebrow">02 / Human Exploration</div>
+
+            <h2>
+              Return<br />
+              to the Moon.
+            </h2>
+
+            <p>
+              NASA's Artemis campaign is designed to build experience,
+              science capabilities, partnerships, and infrastructure
+              around the Moon while preparing for future human missions
+              to Mars.
+            </p>
+
+            <a
+              class="button button-primary"
+              href="https://www.nasa.gov/artemis/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              NASA Artemis ↗
+            </a>
+
+            <div class="fact-list">
+
+              <div class="fact">
+                <strong>Goal</strong>
+                <span>
+                  Establish a long-term human presence on and around the Moon.
+                </span>
+              </div>
+
+              <div class="fact">
+                <strong>Science</strong>
+                <span>
+                  Study the lunar environment and use observations,
+                  samples, and data to expand scientific understanding.
+                </span>
+              </div>
+
+              <div class="fact">
+                <strong>Beyond</strong>
+                <span>
+                  Use lunar exploration to develop capabilities for
+                  future human exploration of Mars.
+                </span>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         AREAS OF WORK
+         ===================================================== -->
+
+    <section class="section section-dark" id="work">
+      <div class="container">
+
+        <div class="section-heading reveal">
+          <div class="eyebrow">03 / Areas of Work</div>
+          <h2>Science without borders.</h2>
+          <p>
+            NASA's work spans the atmosphere, Earth, the solar system,
+            distant worlds, and the technologies needed to explore them.
+          </p>
+        </div>
+
+        <div class="work-grid">
+
+          <article class="work-card reveal">
+            <div class="work-number">01</div>
+            <div class="work-icon" aria-hidden="true">A</div>
+            <h3>Aeronautics</h3>
+            <p>
+              Research that advances aviation technology, safety,
+              efficiency, and the understanding of flight.
+            </p>
+          </article>
+
+          <article class="work-card reveal">
+            <div class="work-number">02</div>
+            <div class="work-icon" aria-hidden="true">E</div>
+            <h3>Earth Science</h3>
+            <p>
+              Observing Earth from space to understand our changing
+              planet and its interconnected systems.
+            </p>
+          </article>
+
+          <article class="work-card reveal">
+            <div class="work-number">03</div>
+            <div class="work-icon" aria-hidden="true">P</div>
+            <h3>Planetary Science</h3>
+            <p>
+              Robotic missions investigate planets, moons, asteroids,
+              comets, and other bodies throughout the solar system.
+            </p>
+          </article>
+
+          <article class="work-card reveal">
+            <div class="work-number">04</div>
+            <div class="work-icon" aria-hidden="true">H</div>
+            <h3>Human Spaceflight</h3>
+            <p>
+              Human exploration programs extend scientific and
+              technological capabilities beyond low Earth orbit.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         SCIENCE
+         ===================================================== -->
+
+    <section class="section science" id="science">
+      <div class="container">
+
+        <div class="section-heading reveal">
+          <div class="eyebrow">04 / Science &amp; Discovery</div>
+          <h2>Looking deeper into the universe.</h2>
+          <p>
+            NASA missions combine spacecraft, instruments, engineering,
+            and scientific analysis to investigate questions ranging
+            from Earth's climate to the origins of galaxies.
+          </p>
+        </div>
+
+        <div class="science-grid">
+
+          <article class="science-panel reveal">
+            <div class="eyebrow">Space Telescope</div>
+            <h3>
+              James Webb Space Telescope
+            </h3>
+            <p>
+              Webb is a space telescope designed to study the universe
+              in infrared wavelengths and investigate topics including
+              stars, galaxies, planetary systems, and the early universe.
+            </p>
+
+            <div class="technical-label">
+              Infrared astronomy
+            </div>
+          </article>
+
+          <article class="science-panel reveal">
+            <div class="eyebrow">Robotic Exploration</div>
+            <h3>
+              Explore worlds beyond Earth
+            </h3>
+            <p>
+              NASA uses robotic spacecraft and rovers to gather scientific
+              measurements and return information from environments that
+              humans cannot yet routinely visit.
+            </p>
+
+            <div class="technical-label">
+              Planetary exploration
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         CALL TO ACTION
+         ===================================================== -->
+
+    <section class="cta">
+      <div class="container reveal">
+
+        <div class="eyebrow">The work continues</div>
+
+        <h2>
+          Explore what<br />
+          comes next.
+        </h2>
+
+        <p>
+          Discover missions, science, spacecraft, research, and the
+          latest official information directly from NASA.
+        </p>
+
+        <a
+          class="button button-primary"
+          href="https://www.nasa.gov/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Explore NASA.gov ↗
+        </a>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- =======================================================
+       FOOTER
+       ======================================================= -->
+
+  <footer>
+    <div class="container">
+
+      <div class="footer-top">
+
+        <div class="footer-brand">
+          <h3>NASA</h3>
+          <p>
+            National Aeronautics and Space Administration.
+            A United States government agency dedicated to
+            aeronautics and space research and exploration.
+          </p>
+        </div>
+
+        <div class="footer-links">
+
+          <div class="footer-column">
+            <h4>Official</h4>
+
+            <a
+              href="https://www.nasa.gov/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              NASA.gov
+            </a>
+
+            <a
+              href="https://www.nasa.gov/about/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              About NASA
+            </a>
+
+            <a
+              href="https://www.nasa.gov/missions/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Missions
+            </a>
+          </div>
+
+          <div class="footer-column">
+            <h4>Explore</h4>
+
+            <a
+              href="https://www.nasa.gov/artemis/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Artemis
+            </a>
+
+            <a
+              href="https://science.nasa.gov/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              NASA Science
+            </a>
+
+            <a
+              href="https://www.nasa.gov/earth/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Earth
+            </a>
+          </div>
+
+          <div class="footer-column">
+            <h4>History</h4>
+
+            <a
+              href="https://www.nasa.gov/history/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              NASA History
+            </a>
+
+            <a
+              href="https://www.nasa.gov/history/65-years-ago-the-national-aeronautics-and-space-act-of-1958-creates-nasa/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              1958 Origins
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <span>NASA information presented from official NASA sources.</span>
+        <span>Static demonstration page.</span>
+      </div>
+
+      <!-- Jasman Singh watermark -->
+      <div class="footer-watermark">
+        Jasman Singh
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- =======================================================
+       JAVASCRIPT
+       ======================================================= -->
+
+  <script>
+    /*
+      Minimal JavaScript:
+      - Sticky header state
+      - Mobile navigation
+      - Scroll reveal animation
+    */
+
+    const header = document.getElementById("header");
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    // Header background after scrolling.
+    function updateHeader() {
+      if (window.scrollY > 30) {
+        header.classList.add("scrolled");
+      } else {
+        header.classList.remove("scrolled");
+      }
+    }
+
+    window.addEventListener("scroll", updateHeader);
+    updateHeader();
+
+    // Mobile navigation.
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.setAttribute(
+        "aria-label",
+        isOpen ? "Close navigation" : "Open navigation"
+      );
+    });
+
+    // Close mobile menu after selecting a section.
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open navigation");
+      });
+    });
+
+    // Reveal elements as they enter the viewport.
+    const revealElements = document.querySelectorAll(".reveal");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.12
+      }
+    );
+
+    revealElements.forEach((element) => observer.observe(element));
+  </script>
+
+</body>
+</html>
